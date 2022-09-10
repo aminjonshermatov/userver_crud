@@ -33,7 +33,7 @@ components_manager:
                     overflow_behavior: discard  # Drop logs if the system is too busy to write them down.
 
         tracer:                              # Component that helps to trace execution times and requests in logs.
-            service-name: service_template   # "You know. You all know exactly who I am. Say my name. " (c)
+            service-name: userver_crud   # "You know. You all know exactly who I am. Say my name. " (c)
 
         dynamic-config:                      # Dynamic config storage options, do nothing
             fs-cache-path: ''
@@ -61,3 +61,8 @@ components_manager:
             path: /hello                  # Registering handler by URL '/hello'.
             method: GET,POST              # It will only reply to GET (HEAD) and POST requests.
             task_processor: main-task-processor  # Run it on CPU bound task processor
+
+        handler-crud:
+            path: /crud/{id}
+            method: GET,POST,PATCH,DELETE
+            task_processor: main-task-processor

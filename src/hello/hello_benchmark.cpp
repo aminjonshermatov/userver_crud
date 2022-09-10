@@ -5,7 +5,7 @@
 #include <string_view>
 
 #include <benchmark/benchmark.h>
-#include <userver/engine/run_standalone.hpp>
+#include "userver/engine/run_standalone.hpp"
 
 void HelloBenchmark(benchmark::State& state) {
   userver::engine::RunStandalone([&] {
@@ -14,7 +14,7 @@ void HelloBenchmark(benchmark::State& state) {
 
     for (auto _ : state) {
       const auto name = kNames[i++ % std::size(kNames)];
-      auto result = service_template::SayHelloTo(name);
+      auto result = userver_crud::SayHelloTo(name);
       benchmark::DoNotOptimize(result);
     }
   });

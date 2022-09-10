@@ -6,7 +6,8 @@
 #include <userver/server/handlers/tests_control.hpp>
 
 
-#include "hello.hpp"
+#include "hello/hello.hpp"
+#include "crud/crud.hpp"
 
 int main(int argc, char *argv[]) {
   auto component_list = userver::components::MinimalServerComponentList()
@@ -15,7 +16,8 @@ int main(int argc, char *argv[]) {
                             .Append<userver::components::HttpClient>()
                             .Append<userver::server::handlers::TestsControl>();
 
-  service_template::AppendHello(component_list);
+  userver_crud::AppendHello(component_list);
+  userver_crud::AppendCrud(component_list);
 
   return userver::utils::DaemonMain(argc, argv, component_list);
 }
